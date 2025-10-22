@@ -1,13 +1,28 @@
-# Spring Boot JWT Authentication (Complete Reference)
+# Spring Boot JWT Authentication – Complete Guide
 
-This is a **single Markdown file** containing the **entire JWT authentication tutorial** in Spring Boot.  
-It includes **all code**, **explanations**, **usage instructions**, and **best practices**.
+This is a **complete reference** for JWT authentication in Spring Boot.  
+It contains **theory**, **code blocks**, **usage**, and **best practices**.
 
 ---
 
-## 1️⃣ Project Dependencies
+## 1️⃣ What is JWT?
 
-Add these dependencies in your `pom.xml`:
+**JWT (JSON Web Token)** is a compact, URL-safe means of representing claims between two parties.  
+It is commonly used for **stateless authentication** in web applications.
+
+A JWT consists of three parts:
+
+1. **Header** – contains the type of token and signing algorithm.  
+2. **Payload** – contains user information (claims).  
+3. **Signature** – used to verify the integrity of the token.
+
+> JWT allows the server to **authenticate users without storing session data**.
+
+---
+
+## 2️⃣ pom.xml Dependencies
+
+We need Spring Boot, Spring Security, JPA, H2 database (for demo), and jjwt library.
 
 ```xml
 <dependencies>
@@ -35,18 +50,4 @@ Add these dependencies in your `pom.xml`:
     </dependency>
 </dependencies>
 
-
-
-import jakarta.persistence.*;
-
-@Entity
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String username;
-    private String password; // Always hash passwords in production
-
-    // getters & setters
-}
 
