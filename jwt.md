@@ -51,3 +51,44 @@ We need Spring Boot, Spring Security, JPA, H2 database (for demo), and jjwt libr
 </dependencies>
 
 
+# User Entity – Spring Boot JWT Authentication
+
+## Theory
+
+The `User` entity represents a user in the database.  
+Each user has:  
+
+- **id** – A unique identifier for the user.  
+- **username** – The name used to log in.  
+- **password** – The password for authentication (should be hashed in production).  
+
+**Key Points:**  
+
+- `@Entity` – Marks the class as a JPA entity to map to a database table.  
+- `@Id` – Marks the primary key field.  
+- `@GeneratedValue(strategy = GenerationType.IDENTITY)` – Auto-generates the primary key value.  
+
+In a real application:  
+
+- Passwords **must never be stored as plain text**. Use a secure hashing algorithm like **BCrypt**.  
+- Additional fields like `roles` or `email` can be added as needed for authorization.  
+
+---
+
+## Code
+
+```java
+import jakarta.persistence.*;
+
+@Entity
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String username;
+    private String password;
+
+    // Getters & Setters
+}
+
+
